@@ -87,6 +87,9 @@ def main():
         st.write("## Best:")
         st.write(best)
         
+
+best_model = compare_models()
+st.write("Le meilleur modèle est :", best_model)
         # Ajuster le modèle
         @st.cache(allow_output_mutation=True)
         def tune_lda_model():
