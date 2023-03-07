@@ -59,8 +59,26 @@ def main():
         exp_nlp101 = setup_experiment(df)
         st.write("## Setup:")
         st.write(exp_nlp101)
-        st.write(best)
-        # Comparer les modèles
+       
+        # Créer le modèle LDA
+        @st.cache(allow_output_mutation=True)
+        def create_lda_model():
+            ldafr = create_model('lda')
+            return ldafr
+
+        ldafr = create_lda_model()
+        st.write("## LDA:")
+        st.write(ldafr)
+        # Assigner les topics aux documents
+        lda_results = assign_model(ldafr)
+        st.write("## LDA resultat:")
+        st.write(lda_results)
+        # Évaluer le modèle
+        evaluate_model(ldafr)
+        st.write("## LDA evaluate:")
+        st.write(evaluate_model)
+        
+         # Comparer les modèles
 
         def best_function():
             best = compare_models()
@@ -69,28 +87,16 @@ def main():
         st.write("## Best:")
         st.write(best)
         
-        # Créer le modèle LDA
-        @st.cache(allow_output_mutation=True)
-        def create_lda_model():
-            ldafr = create_model('lda')
-            return ldafr
-
-        ldafr = create_lda_model()
-
-        # Assigner les topics aux documents
-        lda_results = assign_model(ldafr)
-
-        # Évaluer le modèle
-        evaluate_model(ldafr)
-
         # Ajuster le modèle
         @st.cache(allow_output_mutation=True)
         def tune_lda_model():
-            tuned_classification = tune_model(model='lda', multi_core=True, supervised_target=target)
+            tuned_classification = tune_model(model='lda', multi_core=True, supervised_target=targets)
             return tuned_classification
 
         tuned_classification = tune_lda_model()
-
+        st.write("## Tune:")
+        st.write(tuned_classification)
+        
         # Visualiser les résultats
         st.title("Topic Modeling avec PyCaret et Streamlit")
         st.subheader("Word Cloud")
