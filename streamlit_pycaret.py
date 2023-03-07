@@ -50,13 +50,6 @@ def main():
         st.write("## Prétraitement:")
         st.write(df)
 
-        # Configurer l'expérience PyCaret
-        def setup_experiment(df):
-            exp_nlp101 = setup(data=df, target=targets, session_id=123)
-            print(exp_nlp101)
-            return exp_nlp101
-
-        exp_nlp101 = setup_experiment(df)
 
         # Créer le modèle LDA
         @st.cache(allow_output_mutation=True)
