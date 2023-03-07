@@ -53,7 +53,7 @@ def main():
         
         # Configurer l'expérience PyCaret
         def setup_experiment(df):
-            exp_nlp101 = setup(df, target=targets)
+            exp_nlp101 = setup(df, target=targets, session_id=123)
             return exp_nlp101
 
         exp_nlp101 = setup_experiment(df)
