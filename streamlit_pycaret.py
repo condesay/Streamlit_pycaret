@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from pycaret.nlp import *
+from pycaret.classification import *
 
 def main():
     st.title('Classification avec Pycaret')
@@ -49,7 +50,13 @@ def main():
         df = preprocess_data(df)
         st.write("## Prétraitement:")
         st.write(df)
+        
+        # Configurer l'expérience PyCaret
+        def setup_experiment(df):
+            exp_nlp101 = setup(data=df, target=target, session_id=123)
+            return exp_nlp101
 
+        exp_nlp101 = setup_experiment(df)
 
         # Créer le modèle LDA
         @st.cache(allow_output_mutation=True)
