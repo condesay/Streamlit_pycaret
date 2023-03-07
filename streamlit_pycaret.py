@@ -56,8 +56,10 @@ def main():
             exp_nlp101 = setup(df, target=targets, session_id=123)
             return exp_nlp101
 
-        exp_nlp101 = setup_experiment(df)
-
+        df = setup_experiment(df)
+        st.write("## Setup:")
+        st.write(df)
+        
         # Créer le modèle LDA
         @st.cache(allow_output_mutation=True)
         def create_lda_model():
