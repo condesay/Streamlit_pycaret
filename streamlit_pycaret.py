@@ -20,10 +20,6 @@ def main():
         st.write("## Les premières lignes du fichier:")
         st.write(df.head())
 
-        # Afficher des informations sur les colonnes
-        st.write("## Informations sur les colonnes:")
-        st.write(df.info())
-
         # Afficher les statistiques descriptives
         st.write("## Statistiques descriptives:")
         st.write(df.describe())
