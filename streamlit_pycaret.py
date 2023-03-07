@@ -34,11 +34,11 @@ def main():
             return features
 
         def select_target(df):
-            target = st.selectbox("Sélectionnez la target", df.columns.tolist(),key="unique_key")
-            return target
+            targets = st.selectbox("Sélectionnez la target", df.columns.tolist(),key="unique_key")
+            return targets
 
         st.write("## Choix de la target et des features:")
-        target = select_target(df)
+        targets = select_target(df)
         features = select_features(df)
 
         # Prétraiter les données
@@ -52,7 +52,7 @@ def main():
 
         # Configurer l'expérience PyCaret
         def setup_experiment(df):
-            exp_nlp101 = setup(data=df, target=target, session_id=123)
+            exp_nlp101 = setup(data=df, target=targets, session_id=123)
             print(exp_nlp101)
             return exp_nlp101
 
