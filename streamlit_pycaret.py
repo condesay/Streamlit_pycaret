@@ -54,15 +54,21 @@ def main():
         # Configurer l'expérience PyCaret
         def setup_experiment(df):
             exp_nlp101 = setup(df, target=targets, session_id=123)
-            # Comparer les modèles
-            best = compare_models()
-            return exp_nlp101, best
+            return exp_nlp101
 
-        exp_nlp101, best = setup_experiment(df)
+        exp_nlp101 = setup_experiment(df)
         st.write("## Setup:")
         st.write(exp_nlp101)
         st.write(best)
+        # Comparer les modèles
 
+        def best_function():
+            best = compare_models()
+            return best
+        best= best_function()
+        st.write("## Best:")
+        st.write(best)
+        
         # Créer le modèle LDA
         @st.cache(allow_output_mutation=True)
         def create_lda_model():
