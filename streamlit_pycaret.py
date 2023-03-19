@@ -1,8 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from pycaret.nlp import *
-from pycaret.classification import *
+from pycaret import *
 
 def main():
     st.title('Classification avec Pycaret')
